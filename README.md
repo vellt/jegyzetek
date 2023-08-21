@@ -6,9 +6,7 @@ Célja, hogyha eleinte csak Lokálisan gondolkozunk és mondjuk a szomszéd poé
 
 Megosztott munkavégzésre is kitünő, hiszen visszatekinthető, hogy ki, mit és hol módosított. Ez biztosít számunkra egy olyan rendszert, amely felügyeli a projektváltozását annak életciklusa során (hogyan, mikor, kiáltal, miért). Időtöl és tértől függetlenül akármennyien dolgozhatnak egy projekten. 
 
- 
-
-![](C:\oktatas_git\readme\git.jpg)
+![](https://github.com/vellt/readme/blob/git_kezeles/git.jpg?raw=true)
 
 ## Kulcsszavak
 
@@ -23,8 +21,6 @@ Megosztott munkavégzésre is kitünő, hiszen visszatekinthető, hogy ki, mit �
 - Branch, checkout
 
 - merge, merge conflicts
-
-
 
 ## Alapvető parancssori utasítások
 
@@ -77,5 +73,4 @@ git config --global user.email ".."
 git config --global user.name ".."
 git log
 git reset --hard HEAD ~1
-
 ```
