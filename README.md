@@ -1,73 +1,81 @@
-## 
+# Git verziókezelés
 
-# Szofver fejlesztő és tesztelő technikus
+A Git egy parancssori eszköz, bár manapság minden IDE támogatja beépített GUI modul formályában. A verzió kezelés lelke. Egy valamire való fejlesztő enélkül ki se lép az ajtón. 
 
-## Telepítendő programok (User LV)
+Célja, hogyha eleinte csak Lokálisan gondolkozunk és mondjuk a szomszéd poénból 20 percig folyamatosan töröl meg módosít a projektünkben, vissza tudjunk állni bármelyik korábbi működő verzióra. 
 
-- [postman](https://dl.pstmn.io/download/latest/win64)
+Megosztott munkavégzésre is kitünő, hiszen visszatekinthető, hogy ki, mit és hol módosított. Ez biztosít számunkra egy olyan rendszert, amely felügyeli a projektváltozását annak életciklusa során (hogyan, mikor, kiáltal, miért). Időtöl és tértől függetlenül akármennyien dolgozhatnak egy projekten. 
 
-- [nucleon](https://nucleoapp.com/download/windows/latest)
+ 
 
+![](C:\oktatas_git\readme\git.jpg)
 
+## Kulcsszavak
 
-## A: Projektfeladat
+- Local (add, commit)
 
-### Vizsgaremek: (min: 2, max 3 fő)
+- Remotes (clone, push, pull)
 
-⏳ záróvizgsa évében kell megcsinálni
+- commit workflow (add, commit, push)
 
-- Életszerű, valódi problémára nyújt megoldást.
+- commit version history: A verziók láncként egymásra épülnek. ".git" rejtett foleren belül érhető el. Kitörölni szigorúan TILOS. A projekt verziókezelését felügyeli. Lehetővé teszi, hogy akármelyik pillanatban vissza tudjunk állni egy régebbi állapotra.
 
-- Adattárolási és -kezelési funkciókat is megvalósít.
+- Branch, checkout
 
-- RESTful architektúrának megfelelő szerver és kliens oldali komponenseket egyaránt tartalmaz.
-
-- Mobil eszközre kifejlesztett kliens esetén natív mobil alkalmazás, vagy azzal hozzávetőlegesen megegyező felhasználói élményt nyújtó webes kliens egyaránt alkalmazható.
-
-- Asztali eszközökre fejlesztett kliens oldali komponensnél mindenképpen szükséges webes megvalósítás is, de emellett opcionálisan natív, asztali alkalmazás is a csomag része lehet. (pl. A felhasználóknak szánt interfész webes megjelenítést használ, míg az adminisztrációs felület natív asztali alkalmazásként készül el).
-
-❗❗ vizsga előtt legkésőbb 14 nappal kell benyujtani GitHubon megosztva.
-
-#### A GitHub csomag tartalma:
-
-- forráskód
-- desktop esetében: telepítő készlet
-- adatbázis, adatmodell-diagram
-- adatbázis export fájlja (dump)
-- szoftveralkalmazás dokumentációja (A szoftver célja, komponenseinek technikai leírása, működésének műszaki feltételei és használatának rövid bemutatása)
-- tesztekhez végzett kód, valamint teszteredmények doumentációja
-
-#### Bemutatása, megvédése szóban:
-
-🕕 maximum 30 perc
-
-- szoftver célja
-- működési megvalósítás
-- műkösése
-- forráskódja
-- vizsgázó csapaton belüli szerepét, projektszervezési eszközöket (kanban tábla stb)
-  majd angol nyelven rövid összefogalaló felelet (2-3perc), max 2-3 kérdésre válaszolva.
+- merge, merge conflicts
 
 
 
-## B: Asztali- és webes szoftverfejlesztés, adatbázis-kezelés feladatsor
+## Alapvető parancssori utasítások
 
-### A feladatsor az alább részekből áll:
+Kedvenc terminálunk a Windows PowerShell, ami egy szteroidozott CMD. Mivel a Git egy parancssori eszköz így pár alapvető parancssori utasítással is meg kell ismerkedni. Ha valamilyen parancs után pontot teszünk, az az aktuális mappát hivatkozza le.
 
-- Grafikus és konzolos részt egyaránt tartalmazó asztali alkalmazás fejlesztése
+### PowerShell utasítások
 
-- Komplex webes és adatbázis-kezelési feladat, amely tartalmaz:
-  
-  - Reszponzív viselkedésű weboldal készítést és formázást
-  
-  - Backend programozást (adatbázis lekérdezést is végző, néhány végpontot tartalmazó REST API kiszolgáló létrehozása)
-  
-  - Frontend programozást (HTML / CSS /JavaScript / REST API kliens)
+```yaml
+dir            # látható könyvtár tartalom
+ls             # látható könyvtár tartalom
+ls -hidden     # rejtett könyvtár tartalom
+ls -force      # rejtett + látható könyvtár tartalom
+get-childitem -hidden     # rejtett + látható állományok
+get-childitem -force      # rejtett + látható könyvtár tartalom
+new-item test.txt         # készít egy test.txt üres állományt
+mkdir          # mappa készítése
+cd             # ugrálás a mappák között
+cd..           # vissza lépés egy mappával
+cls            # törli a képernyőt, ha már tele spammeltük
+cmd            # betölti a cmd terminált
+exit           # általában arra kell hogy bezárjuk a megnyitott cmd-t
+start          # elindít bármit, amihez van alapértelmezés (sln, txt, md)
+explorer .     # az aktuális foldert megnyitja a fájlkezelőben
+code .         # az akt. foldert megnyitja a Visual Studio Code-ban    
+ctrl +c        # (billentyűzet kombináció) folyamat megszakító
+```
 
+### CMD utasítások
 
+Ha egy-két utasítást nem tudunk lefuttatni PowerShell-ben, vagy csak szeretnénk egy két CMD specifikus parancsot lefuttatni, át kell lépni a CMD-be, a  **cmd** PowerShell parancsal, elvégezzük amiket szeretnénk, majd **exit**-el visszalépünk a PowerShell-be.
 
-## A vizsgatevékenység végrehajtására rendelkezésre álló időtartam: 270 perc. Ezen belül:
+```yaml
+dir /a                 # rejtett + látható könyvtár tartalom
+copy nul > test.txt    # tetszőleges állomány készítése
+copy con test.txt      # tetszőleges állomány készítése
+```
 
-- Szoftverfejlesztés és -tesztelés vizsgaremek vizsgarész: 30 perc 🕕
+### Git utasítások
 
-- Asztali- és webes szoftverfejlesztés, adatbázis-kezelés feladatsor: 240 perc 🕕
+```yaml
+git init .             # df
+git status
+git add <file>
+git add --all
+git add test/
+git add .
+git commit -m "leírás"
+git config -l            # lokálisnál lehet hasznos
+git config --global user.email ".."
+git config --global user.name ".."
+git log
+git reset --hard HEAD ~1
+
+```
