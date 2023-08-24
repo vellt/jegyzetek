@@ -4,11 +4,11 @@
 
 ## Telepítendő programok (User LV)
 
+- [chrome](https://www.google.com/chrome/next-steps.html?statcb=1&installdataindex=empty&defaultbrowser=0#)
+
 - [postman](https://dl.pstmn.io/download/latest/win64)
 
 - [nucleon](https://nucleoapp.com/download/windows/latest)
-
-
 
 ## A: Projektfeladat
 
@@ -48,8 +48,6 @@
 - vizsgázó csapaton belüli szerepét, projektszervezési eszközöket (kanban tábla stb)
   majd angol nyelven rövid összefogalaló felelet (2-3perc), max 2-3 kérdésre válaszolva.
 
-
-
 ## B: Asztali- és webes szoftverfejlesztés, adatbázis-kezelés feladatsor
 
 ### A feladatsor az alább részekből áll:
@@ -63,8 +61,6 @@
   - Backend programozást (adatbázis lekérdezést is végző, néhány végpontot tartalmazó REST API kiszolgáló létrehozása)
   
   - Frontend programozást (HTML / CSS /JavaScript / REST API kliens)
-
-
 
 ## A vizsgatevékenység végrehajtására rendelkezésre álló időtartam: 270 perc. Ezen belül:
 
