@@ -74,3 +74,5 @@ git config --global user.name ".."
 git log
 git reset --hard HEAD ~1
 ```
+
+![](https://github.com/vellt/jegyzetek/blob/git_kezeles/github_diagram.drawio.png?raw=true)
