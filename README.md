@@ -76,3 +76,23 @@ git reset --hard HEAD ~1
 ```
 
 ![](https://github.com/vellt/jegyzetek/blob/git_kezeles/github_diagram.drawio.png?raw=true)
+
+
+
+Git 2. kép
+
+
+
+4 fő állapota egy fájlnak
+
+Untracked - nem figyelt
+
+Unmodified - nem módosított
+
+Modified - módosított
+
+Staged - előkészült mentésre
+
+
+
+A git mikor egy Untracked fájlt megfigyelés alá vesz, akkor átkerül a Staged állapotba, itt a fájlok elő vannak készítve a mentésre. Azok a fájlok amik a következő mentésbe benne lesznek az a stage-be lesznek. H egy staged részen lévő fájlt módosítani szeretnénk és ezt a változást rögzíteni is akarjuk, akkor commit-ot fogunk csinálni, ekkor  a fájl állapota átkerül, stagedből unmondified-ra. Most már a fájl olyan mintha nem is módosítottuk volna, ha ezt megint módosítanánk, átkerül az Unmondofed-be, es ha azt akarjuk h az az állapot bekerüljön a mentésbe, át kell tenni onnan a staged állapotba. A fájlunk ebben a 3 állapotban forog, míg úgy nem döntünk hogy kivesszük a gitkezelésből, ekkor visszakerül az Untracked állapotba
