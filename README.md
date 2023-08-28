@@ -86,7 +86,7 @@ git reset --hard HEAD ~1  # segít visszatérni az előző commit állapotába �
 
 - Staged - előkészült mentésre
 
-
+![](https://raw.githubusercontent.com/vellt/jegyzetek/git_kezeles/git2.png)
 
 ###### Git Statement workflow
 
