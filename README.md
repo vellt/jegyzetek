@@ -2,13 +2,13 @@
 
 A Git egy parancssori eszköz, bár manapság minden IDE támogatja beépített GUI modul formályában. A verzió kezelés lelke. Egy valamire való fejlesztő enélkül ki se lép az ajtón. 
 
-Célja, hogyha eleinte csak Lokálisan gondolkozunk és mondjuk a szomszéd poénból 20 percig folyamatosan töröl meg módosít a projektünkben, vissza tudjunk állni bármelyik korábbi működő verzióra. 
+Célja, hogyha eleinte csak Lokálisan gondolkozunk és mondjuk a szomszéd poénból 20 percig folyamatosan töröl meg módosít a projektünkben, vissza tudjunk állni bármelyik korábbi működő verzióra (commit-ra). 
 
 Megosztott munkavégzésre is kitünő, hiszen visszatekinthető, hogy ki, mit és hol módosított. Ez biztosít számunkra egy olyan rendszert, amely felügyeli a projektváltozását annak életciklusa során (hogyan, mikor, kiáltal, miért). Időtöl és tértől függetlenül akármennyien dolgozhatnak egy projekten. 
 
 ![](https://github.com/vellt/readme/blob/git_kezeles/git.jpg?raw=true)
 
-## Kulcsszavak
+## Pár fontosabb Git kifejezések
 
 - Local (add, commit)
 
@@ -22,77 +22,80 @@ Megosztott munkavégzésre is kitünő, hiszen visszatekinthető, hogy ki, mit �
 
 - merge, merge conflicts
 
+- HEAD: a legutolsó commit)
+
+- gitignore
+
 ## Alapvető parancssori utasítások
 
-Kedvenc terminálunk a Windows PowerShell, ami egy szteroidozott CMD. Mivel a Git egy parancssori eszköz így pár alapvető parancssori utasítással is meg kell ismerkedni. Ha valamilyen parancs után pontot teszünk, az az aktuális mappát hivatkozza le.
+Kedvenc terminálunk a Windows PowerShell, ami egy bővített utasításkészletű CMD. Mivel a Git egy parancssori eszköz így pár alapvető parancssori utasítással is meg kell ismerkedni. 
 
 ### PowerShell utasítások
 
+(Ha valamilyen parancs után egy pontot teszünk, az az aktuális mappát hivatkozza le.)
+
 ```yaml
-dir            # látható könyvtár tartalom
-ls             # látható könyvtár tartalom
-ls -hidden     # rejtett könyvtár tartalom
-ls -force      # rejtett + látható könyvtár tartalom
-get-childitem -hidden     # rejtett + látható állományok
-get-childitem -force      # rejtett + látható könyvtár tartalom
-new-item test.txt         # készít egy test.txt üres állományt
-mkdir          # mappa készítése
-cd             # ugrálás a mappák között
-cd..           # vissza lépés egy mappával
-cls            # törli a képernyőt, ha már tele spammeltük
-cmd            # betölti a cmd terminált
-exit           # általában arra kell hogy bezárjuk a megnyitott cmd-t
-start          # elindít bármit, amihez van alapértelmezés (sln, txt, md)
-explorer .     # az aktuális foldert megnyitja a fájlkezelőben
-code .         # az akt. foldert megnyitja a Visual Studio Code-ban    
-ctrl +c        # (billentyűzet kombináció) folyamat megszakító
+dir / ls           # az aktuális könyvtár minden látható elemét kilistázza
+ls -hidden / -h    # az aktuális könyvtár minden rejtett elemét kilistázza
+ls -force / -fo    # az aktuális könyvtár minden rejtett + látható elemét kilistázza
+get-childitem -hidden / -h     # rejtett + látható állományok
+get-childitem -force / -fo     # rejtett + látható könyvtár tartalom
+new-item <file>                # készít egy tetszőleges állományt pl egy test.txt-t    
+remove-item <file>             # törli a kijelölt elemet az aktuális könyvtárból
+rename-item / ren <old> <new>  # fájlok/mappák átnevezése
+mkdir <folder>     # mappa készítése
+rmdir <folder>     # mappa törlése
+cd <path>          # a paraméterként megadott könyvtárra való átlépés
+cd..               # vissza lépés egy mappával
+cls                # törli a képernyőt, ha már mondjuk tele spammeltük
+cmd                # betölti a cmd terminált, amit az exit paranccsal zárjuk le.
+start              # elindít bármit, amihez van alapértelmezés (sln, txt, md)
+explorer .         # az aktuális foldert megnyitja a fájlkezelőben
+code .             # az akt. foldert megnyitja a Visual Studio Code-ban    
+ctrl +c            # (billentyűzet kombináció) folyamat megszakító
 ```
 
-### CMD utasítások
-
-Ha egy-két utasítást nem tudunk lefuttatni PowerShell-ben, vagy csak szeretnénk egy két CMD specifikus parancsot lefuttatni, át kell lépni a CMD-be, a  **cmd** PowerShell parancsal, elvégezzük amiket szeretnénk, majd **exit**-el visszalépünk a PowerShell-be.
+###### Git utasítások
 
 ```yaml
-dir /a                 # rejtett + látható könyvtár tartalom
-copy nul > test.txt    # tetszőleges állomány készítése
-copy con test.txt      # tetszőleges állomány készítése
-```
-
-### Git utasítások
-
-```yaml
-git init .             # df
-git status
-git add <file>
-git add --all
-git add test/
-git add .
-git commit -m "leírás"
-git config -l            # lokálisnál lehet hasznos
-git config --global user.email ".."
-git config --global user.name ".."
-git log
-git reset --hard HEAD ~1
+git init .                # létrehozza a kező git állományokat
+git status                # megmutatja, hogy milyen változásokat hoztál létre vagy módosítottál a projektedben, és azt is, hogy ezeket még nem vagy készen elküldeni a Git követésére.
+git add <file>            # a munkamappbán belül található konkrét állomány hozzáadása a staging area-hoz
+git add --all             # a teljes munkamappában lévő minden változtatást hozzáadja a staging area-hoz, beleértve a törölt fájlokat és a .gitignore-ban meghatározottakat is. 
+git add test/             # a munkamappbán belül található test mappában végzett változtatásokat hozzáadja a Git követési listájához (staging area)
+git add .                 # a munkamappban módosított és újonnan létrehozott fájlokat hozzáadja a Git követési listájához (staging area)
+git commit -m "leírás"    # parancs segítségével létrehozol egy új "commitot" a Git verziókezelő rendszerben. Egy commit egy pillanatkép a projekt állapotáról, amely tartalmazza a módosított vagy újonnan létrehozott fájlokat és azok tartalmát.
+git config -l             # Git beállításainak listázására szolgál (lokálisnál gitkezeléskor lehet hasznos nekünk)
+git config --global user.email ".."  # segítségével beállíthatod a globális felhasználó e-mail címét a Git konfigurációdban. 
+git config --global user.name ".."   # parancs segítségével beállíthatod a globális felhasználó nevét a Git konfigurációdban. 
+git log                   # segít megjeleníteni a projekt előzményeit vagy más szóval "commit" történetét.
+git reset --hard HEAD ~1  # segít visszatérni az előző commit állapotába és eldobni az utolsó commitot. --hard kapcsoló: A változtatásokat a munkamappában és a staging area-ban is eldobod. HEAD~1: azt jelenti, hogy az utolsó commit előtti commitra kívánsz visszalépni. Ha az utolsó mentett commiitra szeretnék vissza állni: git reset --hard HEAD
 ```
 
 ![](https://github.com/vellt/jegyzetek/blob/git_kezeles/github_diagram.drawio.png?raw=true)
 
 
 
-Git 2. kép
+## 4 fő állapota egy fájlnak
+
+- Untracked - nem figyelt
+
+- Unmodified - nem módosított
+
+- Modified - módosított
+
+- Staged - előkészült mentésre
 
 
 
-4 fő állapota egy fájlnak
+###### Git Statement workflow
 
-Untracked - nem figyelt
-
-Unmodified - nem módosított
-
-Modified - módosított
-
-Staged - előkészült mentésre
+Mikor a **Git** egy *Untracked* fájlt megfigyelés alá vesz, akkor átkerül a *Staged* állapotba, itt a fájlok elő vannak készítve a mentésre. Azok a fájlok amik a következő mentésbe benne lesznek az a *staged*-be lesznek. Ha egy, a *staged* állapotban lévő fájlt módosítunk és ezt a változást rögzíteni is akarjuk, akkor egy új *commit*-ot kell készíteni róla, ekkor a fájl állapota átkerül a *staged*-ből *unmodified*-be. Most már a fájl logikailag olyan mintha nem is módosítottuk volna, ha ezt megint módosítjuk,
 
 
 
-A git mikor egy Untracked fájlt megfigyelés alá vesz, akkor átkerül a Staged állapotba, itt a fájlok elő vannak készítve a mentésre. Azok a fájlok amik a következő mentésbe benne lesznek az a stage-be lesznek. H egy staged részen lévő fájlt módosítani szeretnénk és ezt a változást rögzíteni is akarjuk, akkor commit-ot fogunk csinálni, ekkor  a fájl állapota átkerül, stagedből unmondified-ra. Most már a fájl olyan mintha nem is módosítottuk volna, ha ezt megint módosítanánk, átkerül az Unmondofed-be, es ha azt akarjuk h az az állapot bekerüljön a mentésbe, át kell tenni onnan a staged állapotba. A fájlunk ebben a 3 állapotban forog, míg úgy nem döntünk hogy kivesszük a gitkezelésből, ekkor visszakerül az Untracked állapotba
+ átkerül az *Unmondifed*-be, és ha azt akarjuk h az az állapot bekerüljön a következ mentésbe, át kell tenni onnan a staged állapotba. 
+
+
+
+A fájlunk ebben a 3 állapotban forog, míg úgy nem döntünk hogy kivesszük a gitkezelésből, ekkor visszakerül az Untracked állapotba
