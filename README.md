@@ -1,6 +1,6 @@
 ## 
 
-# Szofver fejlesztő és tesztelő technikus
+# Szoftver fejlesztő és tesztelő technikus
 
 ## Telepítendő programok (User LV)
 
